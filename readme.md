@@ -1,4 +1,12 @@
 # Laboratorio 2: Arbol de Merkle y Pruebas de Inclusión
+
+![Algorithm](https://img.shields.io/badge/Algorithm-SHA--256-1081c2?style=flat&logo=auth0&logoColor=white)
+![Structure](https://img.shields.io/badge/Structure-Merkle%20Tree-2ea44f?style=flat)
+![Verification](https://img.shields.io/badge/Audit-Inclusion%20Proofs-8a2be2?style=flat)
+![Complexity](https://img.shields.io/badge/Proof%20Complexity-O(log%20N)-orange?style=flat)
+![Views](https://komarev.com/ghpvc/?username=ema28pro-merkle-tree-python&label=Visitas&color=blue&style=flat)
+
+ 
 **Materia**: Estructura de Datos y Laboratorio  
 Implementación de un **Arbol de Merkle** criptográfico en Python utilizando el algoritmo **SHA-256**, diseñado para verificar la integridad de bloques de datos y generar pruebas de inclusión (*Merkle Proofs*).
 
