@@ -112,7 +112,7 @@ python main.py
 ```
 
 ### 3. Versión simplificada con listas (`merkle_lists.py`)
-Una implementación ultra compacta (~30 líneas) sin dependencias externas que prescinde de la clase `Nodo` y punteros, resolviendo la jerarquía y la prueba de inclusión únicamente con listas nativas de Python y cálculo de índices (`idx // 2` y hermano por paridad):
+Una implementación corta (~30 líneas) y simple que prescinde de la clase `Nodo` y punteros, resolviendo la jerarquía y la prueba de inclusión únicamente con listas nativas de Python y cálculo de índices (`idx // 2` y hermano por paridad):
 
 ```bash
 python merkle_lists.py
