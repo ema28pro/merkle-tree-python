@@ -1,5 +1,5 @@
 # Laboratorio 2: Arbol de Merkle y Pruebas de Inclusión
-
+**Materia**: Estructura de Datos y Laboratorio  
 Implementación de un **Arbol de Merkle** criptográfico en Python utilizando el algoritmo **SHA-256**, diseñado para verificar la integridad de bloques de datos y generar pruebas de inclusión (*Merkle Proofs*).
 
 
