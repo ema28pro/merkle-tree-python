@@ -1,0 +1,22 @@
+Laboratorio 2,
+
+Implementar un Árbol de Merkle con las siguientes especificaciones:
+* Cada hoja contiene el hash SHA-256 de un bloque de datos.
+* Cada nodo interno contiene el hash SHA-256 de la concatenación de sus dos hijos.
+* Si el número de hojas o ramas es impar, la última se duplica.
+* La raíz (Merkle Root) es el hash que representa todo el conjunto.
+
+Experimento:
+* Crear 5 transacciones de datos (pueden ser transacciones simuladas).
+* Construir el árbol y mostrar la raíz.
+* Modificar una transacción y demostrar que la raíz cambia.
+* Generar una prueba de inclusión para la transacción 3 y verificar que es válida.
+* verificar con un dato incorrecto → debe fallar.
+
+Entregable (en su repositorio git):
+Código fuente. 
+Diagrama del árbol construido (puede ser ASCII o gráfico).
+Capturas de pantalla de las verificaciones (válida e inválida).
+Readme
+
+Plazo hasta el 19 septiembre, 4 pm
