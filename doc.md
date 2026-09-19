@@ -88,8 +88,6 @@ Imagina que tienes 5 transacciones y quieres demostrarle a alguien que la **Tran
 
 En la computación distribuida y la criptografía moderna, el árbol de Merkle clásico ha evolucionado hacia estructuras más sofisticadas para resolver problemas de escalabilidad, almacenamiento y privacidad:
 
----
-
 #### 5.1. Merkle Patricia Tries (MPT) — El motor de Ethereum
 Mientras que Bitcoin utiliza un árbol de Merkle binario estático para transacciones dentro de cada bloque, **Ethereum** necesita gestionar el estado global dinámico de millones de cuentas (balances, almacenamiento de contratos inteligentes, noce de transacción).
 
