@@ -44,6 +44,11 @@ Un **Arbol de Merkle** es un arbol binario donde los datos reales solo están en
    * Es el único hash que queda al final, en la cima del arbol.
    * Representa una **huella digital única de todo el conjunto de datos**. Gracias al *efecto avalancha* de SHA-256, si cambia un solo carácter en una sola transacción, todos los hashes hacia arriba cambian drásticamente y la raíz final será completamente distinta.
 
+> [!NOTE]
+> **Detalle de implementación en Python (`.encode()` y `.hexdigest()`):**
+> * **`.encode()`:** Las funciones hash procesan secuencias de bytes binarios (`bytes`), no strings abstractos. `.encode()` traduce el texto a bytes (UTF-8 predeterminado) para que el algoritmo pueda procesarlo. Sin él, Python lanza `TypeError: Unicode-objects must be encoded before hashing`.
+> * **`.hexdigest()`:** El resultado directo de SHA-256 son 32 bytes binarios no legibles (`.digest()`). `.hexdigest()` convierte esa salida a una cadena de texto (`str`) de 64 caracteres hexadecimales (`0-9, a-f`), permitiendo concatenar (`H_izq + H_der`), imprimir en consola y comparar directamente con `==`.
+
 ---
 
 ### 3. ¿Qué es una Prueba de Inclusión (Merkle Proof)?

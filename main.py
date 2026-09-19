@@ -3,7 +3,7 @@ from visualizador import recorrer_arbol, mostrar_arbol
 
 def hash256(data: str) -> str:
     """Calcula el hash SHA-256 de un texto."""
-    return sha256(data.encode('utf-8')).hexdigest()
+    return sha256(data.encode()).hexdigest() # predeterminadamente es uft8
 
 class MerkleTree:
     recorrer_arbol, mostrar_arbol = recorrer_arbol, mostrar_arbol

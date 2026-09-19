@@ -87,7 +87,7 @@ python --version
 > * Para profundizar en los conceptos teóricos y especificaciones criptográficas, consulta [doc.md](doc.md).
 > * Para ver el desglose técnico detallado de cada clase y método de [main.py](main.py), consulta [main.md](main.md).
 
-El proyecto cuenta con dos puntos de entrada principales:
+El proyecto cuenta con las siguientes variantes y puntos de entrada:
 
 ### 1. Experimentos guiados del laboratorio (`test.py`)
 Ejecuta el conjunto de 5 pasos del experimento (creación, cálculo de raíz, prueba del efecto avalancha por alteración, generación/verificación de prueba de inclusión y detección de transacciones falsas):
@@ -97,10 +97,17 @@ python test.py
 ```
 
 ### 2. Entorno interactivo y visualizador (`main.py`)
-Muestra la construcción del arbol, el visualizador vertical en consola y la prueba interactiva definida en la función `app()`:
+Muestra la construcción del arbol con nodos dinámicos enlazados, el visualizador vertical en consola y la prueba interactiva definida en la función `app()`:
 
 ```bash
 python main.py
+```
+
+### 3. Versión simplificada con listas (`merkle_lists.py`)
+Una implementación ultra compacta (~30 líneas) sin dependencias externas que prescinde de la clase `Nodo` y punteros, resolviendo la jerarquía y la prueba de inclusión únicamente con listas nativas de Python y cálculo de índices (`idx // 2` y hermano por paridad):
+
+```bash
+python merkle_lists.py
 ```
 
 

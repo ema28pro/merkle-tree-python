@@ -9,13 +9,31 @@ Este documento describe las responsabilidades y funcionamiento detallado de las 
 Calcula el resumen criptográfico **SHA-256** de una cadena de texto.
 
 * **Parámetros:** `data` (cadena de texto a procesar, por ejemplo una transacción o la concatenación de dos hashes).
-* **Retorno:** Una cadena hexadecimal de 64 caracteres.
-* **Funcionamiento interno:**
+* **Retorno:** Una cadena de texto (`str`) en formato hexadecimal de exactamente 64 caracteres.
+* **Implementación:**
   ```python
   def hash256(data: str) -> str:
-      return sha256(data.encode('utf-8')).hexdigest()
+      return sha256(data.encode()).hexdigest()  # Predeterminadamente usa codificación UTF-8
   ```
-  Codifica el texto en bytes bajo codificación UTF-8 y aplica la función hash estándar de la librería `hashlib`.
+
+#### ¿Por qué es obligatorio usar `.encode()`?
+1. **Los algoritmos hash operan sobre bytes, no sobre texto abstracto:** A nivel matemático y de bajo nivel (C), las funciones criptográficas como SHA-256 procesan secuencias crudas de bytes binarios (enteros de 8 bits `0-255`), no objetos de texto de alto nivel.
+2. **Unicode en Python 3:** En Python 3, los objetos `str` son secuencias abstractas de caracteres Unicode. Para que la librería `hashlib` pueda procesar esos caracteres, primero deben serializarse a una representación en memoria fija de bytes.
+3. **Comportamiento si se omite:** Si intentáramos ejecutar `sha256("texto")` sin codificar, Python lanzará una excepción fatal:
+   ```text
+   TypeError: Unicode-objects must be encoded before hashing
+   ```
+   Llamar a `.encode()` (o `.encode('utf-8')`) convierte el string en un objeto de tipo `bytes` (`b'...'`), permitiendo al algoritmo procesar la entrada correctamente.
+
+#### ¿Por qué es obligatorio usar `.hexdigest()`?
+1. **Salida cruda vs. salida legible:** El cálculo de SHA-256 produce un valor matemático de **256 bits (32 bytes)**. Si usáramos el método básico `.digest()`, Python devolvería un objeto `bytes` binario de 32 bytes con caracteres no imprimibles o de control (por ejemplo: `b'\x97D;\xd5\x10c\xe8...'`).
+2. **Representación hexadecimal estándar:** El método `.hexdigest()` traduce esos 32 bytes binarios a una cadena legible de texto (`str`) donde cada byte se representa mediante dos caracteres hexadecimales (`0-9, a-f`).
+3. **Consistencia en el árbol y la verificación:**
+   * Al convertirlo a una cadena hexadecimal de 64 caracteres legibles, podemos:
+     * Concatenar directamente dos hashes mediante texto plano (`H_izq + H_der`) sin problemas de codificación binaria.
+     * Imprimir los hashes en consola de manera comprensible.
+     * Comparar cadenas directamente (`==`) tanto contra strings como dentro de las pruebas de inclusión.
+     * Seguir el estándar internacional de la industria (Bitcoin, Git, Ethereum, etc.).
 
 
 ## 2. Clase `Nodo`

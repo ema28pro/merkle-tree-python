@@ -1,6 +1,6 @@
 from hashlib import sha256
 
-def h(x): return sha256(str(x).encode()).hexdigest()
+def h(x): return sha256(str(x).encode()).hexdigest() # Predeterminadamente es utf-8 
 
 class MerkleTree:
     def __init__(self, txs):
