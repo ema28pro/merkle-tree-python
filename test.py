@@ -41,7 +41,7 @@ def test():
     txs_modificadas = txs_originales.copy()
     txs_modificadas[1] = "Alejandro paga 5 a Charlie"  # Se modifica la Tx 2
     print(f"  Tx 2 original:  '{txs_originales[1]}'")
-    print(f"  Tx 2 alterada:   '{txs_modificadas[1]}'")
+    print(f"  Tx 2 alterada:  '{txs_modificadas[1]}'")
 
     arbol_modificado = MerkleTree(txs_modificadas)
     raiz_modificada = arbol_modificado.obtener_raiz().valor
