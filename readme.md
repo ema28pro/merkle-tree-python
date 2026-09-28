@@ -5,11 +5,9 @@
 ![Verification](https://img.shields.io/badge/Audit-Inclusion%20Proofs-8a2be2?style=flat)
 ![Complexity](https://img.shields.io/badge/Proof%20Complexity-O(log%20N)-orange?style=flat)
 ![Views](https://komarev.com/ghpvc/?username=ema28pro-merkle-tree-python&label=Visitas&color=blue&style=flat)
-
  
 **Materia**: Estructura de Datos y Laboratorio  
 Implementación de un **Arbol de Merkle** criptográfico en Python utilizando el algoritmo **SHA-256**, diseñado para verificar la integridad de bloques de datos y generar pruebas de inclusión (*Merkle Proofs*).
-
 
 ## Representación del Arbol
 
@@ -21,7 +19,6 @@ A diferencia de implementaciones basadas únicamente en arreglos planos, este pr
 
 > [!Note]
 > Realmente una solucion mas optima es la que usa arreglos de tamaño fijo por ejemplo con numpy o en un lenguaje de bajo nivel y realizar el acceso a padre o hijo mediante calculos de indices, pero optamos para la solucion de este laboratorio por representar el arbol mediante una estructura de datos dinamica para recordar los conceptos de Logica y Representacion II (Listas Doblemente Ligadas y Arboles Binarios).
----
 
 ## Diagrama del Arbol (5 Transacciones)
 
@@ -66,8 +63,6 @@ graph TD
     H_55 -.->|Duplicado Nivel 0| H5_dup
 ```
 
----
-
 ## Requisitos e Instalación
 
 No se requieren librerías externas. El proyecto funciona con la biblioteca estándar de Python:
@@ -85,15 +80,15 @@ git clone https://github.com/ema28pro/merkle-tree-python.git
 python --version
 ```
 
----
-
 ## Ejecución y Pruebas
 
 > [!NOTE]
-> Para el desarrollo de la cuadrícula, centrado matemático y renderizado de ramas en consola del módulo de visualización ([visualizador.py](visualizador.py)), nos apoyamos en herramientas de Inteligencia Artificial.
-> 
-> * Para profundizar en los conceptos teóricos y especificaciones criptográficas, consulta [doc.md](doc.md).
-> * Para ver el desglose técnico detallado de cada clase y método de [main.py](main.py), consulta [main.md](main.md).
+> Para el desarrollo defunciones de visualización ([visualizador.py](visualizador.py)), nos apoyamos en herramientas de Inteligencia Artificial.  
+> Para el grafico del [Readme](readme.md) y documentación de apoyo durante el desarrollo ([doc.md](doc.md)) también nos apoyamos en IA.  
+> * Para leer sobre los conceptos teórico consulta [doc.md](doc.md).
+> * Para ver la funcion de cada clase y método de [main.py](main.py), consulta [main.md](main.md).
+
+---
 
 El proyecto cuenta con las siguientes variantes y puntos de entrada:
 
@@ -118,31 +113,28 @@ Una implementación corta (~30 líneas) y simple que prescinde de la clase `Nodo
 python merkle_lists.py
 ```
 
-
 ## Resultados y Evidencias de los Experimentos
 
 A continuación se presentan las capturas correspondientes a la ejecución paso a paso de los 5 experimentos guiados en [test.py](test.py):
 
-### Paso 1: Creación de 5 transacciones simuladas
-Muestra la definición e inicialización de las 5 transacciones de datos base:
+### Paso 1: Creación de 5 transacciones simuladas  
+Muestra la definición e inicialización de las 5 transacciones de datos base:  
 ![Paso 1 - Creación de transacciones simuladas](img/paso1.png)
 
-### Paso 2: Construcción del arbol y cálculo de la raíz (Merkle Root)
-Construcción ascendente (*bottom-up*), cálculo de la Merkle Root y diagrama de ramas:
+### Paso 2: Construcción del arbol y cálculo de la raíz (Merkle Root)  
+Construcción ascendente (*bottom-up*), cálculo de la Merkle Root y diagrama de ramas:  
 ![Paso 2 - Construcción del arbol y Merkle Root](img/paso2.png)
 
-### Paso 3: Modificación de una transacción y demostración del efecto avalancha
-Alteración de un solo valor en la transacción 2 y comparación carácter a carácter de las raíces resultantes:
+### Paso 3: Modificación de una transacción y demostración del efecto avalancha  
+Alteración de un solo valor en la transacción 2 y comparación carácter a carácter de las raíces resultantes:  
 ![Paso 3 - Alteración de transacción y efecto avalancha](img/paso3.png)
 
-### Paso 4: Generación y verificación de prueba de inclusión (Transacción 3)
-Cálculo de la ruta de hashes hermanos (Merkle Proof) y verificación matemática paso a paso:
+### Paso 4: Generación y verificación de prueba de inclusión (Transacción 3)  
+Cálculo de la ruta de hashes hermanos (Merkle Proof) y verificación matemática paso a paso:  
 ![Paso 4 - Prueba de inclusión para la Transacción 3](img/paso4.png)
 
-### Paso 5: Verificación con dato incorrecto (Detección de fraude)
-Comprobación de que una transacción con datos adulterados no coincide con la raíz del arbol y es rechazada (`False`):
+### Paso 5: Verificación con dato incorrecto (Detección de fraude)  
+Comprobación de que una transacción con datos adulterados no coincide con la raíz del arbol y es rechazada (`False`):  
 ![Paso 5 - Verificación con dato adulterado](img/paso5.png)
-
----
 
 ![tablero](board.excalidraw.png)
