@@ -1,10 +1,6 @@
 # Arbol de Merkle
 Este laboratorio consiste en implementar una de las estructuras de datos criptográficas más importantes de la computación distribuida y blockchain (usada en Bitcoin, Git, etc.): el **Arbol de Merkle**.
 
-A continuación tienes una explicación detallada de cómo funciona cada parte y qué te están pidiendo exactamente en el experimento.
-
----
-
 ### 1. ¿Qué es un Arbol de Merkle?
 
 Un **Arbol de Merkle** es un arbol binario donde los datos reales solo están en la base (las hojas), y cada nodo superior es un resumen criptográfico (**hash SHA-256**) de sus hijos.
@@ -18,8 +14,6 @@ Un **Arbol de Merkle** es un arbol binario donde los datos reales solo están en
                |       |      |      |
              Tx_A    Tx_B   Tx_C   Tx_C        <- Datos base (Transacciones)
 ```
-
----
 
 ### 2. Desglose de las Especificaciones
 
@@ -49,8 +43,6 @@ Un **Arbol de Merkle** es un arbol binario donde los datos reales solo están en
 > * **`.encode()`:** Las funciones hash procesan secuencias de bytes binarios (`bytes`), no strings abstractos. `.encode()` traduce el texto a bytes (UTF-8 predeterminado) para que el algoritmo pueda procesarlo. Sin él, Python lanza `TypeError: Unicode-objects must be encoded before hashing`.
 > * **`.hexdigest()`:** El resultado directo de SHA-256 son 32 bytes binarios no legibles (`.digest()`). `.hexdigest()` convierte esa salida a una cadena de texto (`str`) de 64 caracteres hexadecimales (`0-9, a-f`), permitiendo concatenar (`H_izq + H_der`), imprimir en consola y comparar directamente con `==`.
 
----
-
 ### 3. ¿Qué es una Prueba de Inclusión (Merkle Proof)?
 
 Es la característica más potente de un Arbol de Merkle: **demostrar que una transacción pertenece al conjunto sin tener que descargar ni revisar todas las demás transacciones**.
@@ -63,8 +55,6 @@ Imagina que tienes 5 transacciones y quieres demostrarle a alguien que la **Tran
      * En este caso, necesitará el hash hermano de $H_3$ (que es $H_4$) y el hash hermano de su padre.
 * El verificador hace los hashes hacia arriba paso a paso.
 * Si el resultado final coincide exactamente con la **Merkle Root**, queda demostrado matemáticamente que $T_3$ forma parte del arbol.
-
----
 
 ### 4. Planteamiento de la solucion
 
@@ -82,8 +72,6 @@ Imagina que tienes 5 transacciones y quieres demostrarle a alguien que la **Tran
    * Pasar una transacción falsa (ej. `"Tx3 falsa"`) con la misma prueba y la raíz original.
    * La función `verificar` debe recalcular una raíz errónea y devolver `False` (debe fallar).
 
----
-
 ### 5. Extensiones Modernas y Estado del Arte
 
 En la computación distribuida y la criptografía moderna, el árbol de Merkle clásico ha evolucionado hacia estructuras más sofisticadas para resolver problemas de escalabilidad, almacenamiento y privacidad:
@@ -98,8 +86,6 @@ Mientras que Bitcoin utiliza un árbol de Merkle binario estático para transacc
   3. **Receipts Root:** Recibos y eventos emitidos por los contratos.
 * **Ventaja:** Permite autenticar cualquier dato tipo clave-valor (`¿Tiene Alicia 10 ETH?`) mediante una prueba criptográfica que recorre la clave hexadecimal.
 
----
-
 #### 5.2. Verkle Trees — La frontera de la escalabilidad y clientes sin estado
 Los **Verkle Trees** (creados por John Kuszmaul y adoptados en el roadmap de Ethereum por Vitalik Buterin) representan la mayor revolución sobre los árboles de Merkle en décadas:
 
@@ -110,8 +96,6 @@ Los **Verkle Trees** (creados por John Kuszmaul y adoptados en el roadmap de Eth
   * La prueba de inclusión para un conjunto de datos se comprime en un único compromiso de **tamaño constante sub-kilobyte** (~150 bytes), independiente de la cantidad de datos.
   * **Habilita los *Stateless Clients*:** Nodos ligeros en teléfonos móviles que pueden validar transacciones instantáneamente sin almacenar el historial de la blockchain.
 
----
-
 #### 5.3. Pruebas de Merkle en Conocimiento Cero (zk-SNARKs / zk-Rollups)
 En los sistemas de Capa 2 (L2 como *Starknet, zkSync, Scroll*) y protocolos de privacidad (como *Zcash* o *Tornado Cash*):
 
@@ -120,15 +104,11 @@ En los sistemas de Capa 2 (L2 como *Starknet, zkSync, Scroll*) y protocolos de p
   $$\text{"Sé que pertenezco a la lista de usuarios válidos del árbol, pero no te diré qué hoja soy ni cuál es mi clave pública"}$$
 * **Escalabilidad (Rollups):** Se agrupan miles de transacciones fuera de la cadena principal (*off-chain*), se calcula la nueva raíz de Merkle y se envía a la red principal únicamente una prueba criptográfica sucinta de validez de unos pocos cientos de bytes.
 
----
-
 #### 5.4. Sparse Merkle Trees (SMT) y Pruebas de No-Inclusión
 Un **Árbol de Merkle Disperso** es un árbol conceptualmente gigantesco de $2^{256}$ hojas (el mismo número de posibles hashes SHA-256), donde la inmensa mayoría de las hojas están vacías (con valor cero).
 
 * **Prueba de No-Inclusión (*Non-membership proof*):** Permite demostrar con certeza matemática no solo que un registro **existe**, sino también que un registro **NO existe** en el conjunto de datos.
 * **Optimización en memoria:** Los subárboles vacíos comparten hashes precalculados conocidos por defecto, por lo que solo se instancian en memoria los nodos con información real.
-
----
 
 #### 5.5. Vulnerabilidad histórica: Maleabilidad por duplicación impar (CVE-2012-2459 de Bitcoin)
 La regla de duplicar el último nodo cuando un nivel es impar (implementada en este laboratorio siguiendo el estándar clásico) causó un fallo histórico de seguridad en Bitcoin:
@@ -143,8 +123,6 @@ La regla de duplicar el último nodo cuando un nivel es impar (implementada en e
   * Hojas: $\text{Hash}(0x00 \ || \ \text{dato})$
   * Nodos internos: $\text{Hash}(0x01 \ || \ H_{\text{izq}} \ || \ H_{\text{der}})$
   Esto previene ataques de segunda preimagen y colisiones entre hojas y ramas.
-
----
 
 #### 5.6. Tabla Comparativa
 
