@@ -1,6 +1,6 @@
 # Laboratorio 2: Arbol de Merkle y Pruebas de Inclusión
 
-![Algorithm](https://img.shields.io/badge/Algorithm-SHA--256-1081c2?style=flat&logo=auth0&logoColor=white)
+![Algorithm](https://img.shields.io/badge/Hash-SHA--256-1081c2?style=flat&logo=auth0&logoColor=white)
 ![Structure](https://img.shields.io/badge/Structure-Merkle%20Tree-2ea44f?style=flat)
 ![Verification](https://img.shields.io/badge/Audit-Inclusion%20Proofs-8a2be2?style=flat)
 ![Complexity](https://img.shields.io/badge/Proof%20Complexity-O(log%20N)-orange?style=flat)
